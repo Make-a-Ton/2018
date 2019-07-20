@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Downloader</title>
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  </head>
+  <body onload="fetchIssues()">
+    <div class="container">
+      <h1><b>Downloader</b>&nbsp;<small>CODERS_OC</small></h1>
+      <div class="jumbotron">
+        <h3>Add a new Download</h3>
+        <form id="issueInputForm">
+          <div class="form-group">
+            <label for="issueDescInput">URL Link</label>
+            <input type="text" class="form-control" id="issueDescInput" placeholder="Enter URL of the file ...">
+          </div>
+          <div class="form-group">
+            <label for="issueDescInput">Priority</label>
+             <select class="form-control" id="issueSeverityInput">
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="issueDescInput">Comments</label>
+            <input type="text" class="form-control" id="issueAssignedToInput" placeholder="Any comments ...">
+          </div>
+          <button type="submit" class="btn btn-primary"  onclick="exec('test.py');" >Add</button>
+        </form>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div id="issuesList">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDfZHRsY1dydFYROcwjo2Oj0OXmuQAHi10",
+        authDomain: "downloader-123.firebaseapp.com",
+        databaseURL: "https://downloader-123.firebaseio.com",
+        projectId: "downloader-123",
+        storageBucket: "downloader-123.appspot.com",
+        messagingSenderId: "238452953556"
+      };
+      firebase.initializeApp(config);
+      var ref = firebase.database().ref();
+      ref.on("value", function(snapshot){output.innerHTML = JSON.stringify(snapshot.val(), null, 2);
+      });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://chancejs.com/chance.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+    <!--<a href="#" class="btn btn-warning" onclick="setStatusClosed(\''+id+'\')">Close</a>
+    <a href="#" class="btn btn-danger" onclick="deleteIssue(\''+id+'\')">Delete</a>-->
+  </body>
+</html>

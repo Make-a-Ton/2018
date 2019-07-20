@@ -1,0 +1,101 @@
+<html>
+<body>
+<div class="slidecontainer">
+  
+  <p>Angle of reflection=Angle of incidence= <span id="demo"></span> degrees</p>
+  <input type="range" min="1" max="90" value="45" class="slider" id="myRange">
+  
+</div>
+<
+<svg  align="center" height="100vh" width="100vh">
+
+	<rect id="rect" width="600" height="50" x="0" y="200" style="fill:rgb(192, 192, 192);stroke-width:10;"  />
+	
+ <line id="item" x1="0" y1="0" x2="200" y2="200" transform="rotate(0,200,200)"style="stroke:rgb(255,0,0);stroke-width:2" />
+ <line id="item2" x1="200" y1="200" x2="400" y2="0" transform="rotate(0,200,200)"style="stroke:rgb(0, 0, 255);stroke-width:2" />
+ <g fill="none" stroke="gray" stroke-width="2" >
+    <path stroke-linecap="butt" stroke-dasharray="5,5" d="M200 -200 200 300" />
+    
+  </g>
+
+</svg>
+<script>
+	
+function updateangle(){
+var angle=45-slider.value;
+
+var angle2=slider.value-45;
+
+var myElement = document.getElementById("item");
+myElement.setAttribute('transform','rotate('+ angle +',200,200)');
+
+
+var myElement2 = document.getElementById("item2");
+myElement2.setAttribute('transform','rotate('+ angle2 +',200,200)');
+document.getElementById("angler").innerHTML=angle;
+
+}
+
+
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value;
+
+
+
+slider.oninput = function() {
+  output.innerHTML = this.value;
+  updateangle();
+}
+
+  
+
+
+
+</script>
+<style>
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+  
+}
+
+p {
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
+}
+</style>
+</body>
+</html>
